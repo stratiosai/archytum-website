@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 
 const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
-const bookingsUrl = import.meta.env.PUBLIC_BOOKINGS_URL || '';
 ---
 
 <BaseLayout title="Contact Archytum" description="Start a Business AI or Enterprise Azure & AI conversation with Archytum.">
@@ -61,7 +60,7 @@ const bookingsUrl = import.meta.env.PUBLIC_BOOKINGS_URL || '';
           {!formEndpoint && <p class="help"><strong>Local preview:</strong> submission is disabled until the approved Formspree endpoint is configured.</p>}
         </form>
 
-        {bookingsUrl ? <p id="booking-ready" hidden><a class="button secondary" href={bookingsUrl}>Book a 25-minute Business AI Fit Call</a></p> : <p class="help">Microsoft Bookings remains disabled until separately approved and configured.</p>}
+        <p class="help">If an inquiry is a fit, meeting times are coordinated by email. Enterprise architecture time is not publicly bookable.</p>
       </div>
     </div>
   </section>
