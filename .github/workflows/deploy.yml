@@ -29,6 +29,12 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          ARCHYTUM_DEPLOY_BASE: /archytum-website
+      - name: Prepare project-site links
+        run: node scripts/prepare-pages-preview.mjs
+        env:
+          ARCHYTUM_DEPLOY_BASE: /archytum-website
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

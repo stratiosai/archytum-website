@@ -10,7 +10,11 @@ const {
   noindex = false
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const deployBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalPath = deployBase && Astro.url.pathname.startsWith(deployBase)
+  ? Astro.url.pathname.slice(deployBase.length) || '/'
+  : Astro.url.pathname;
+const canonical = new URL(canonicalPath, Astro.site);
 const path = Astro.url.pathname;
 ---
 
