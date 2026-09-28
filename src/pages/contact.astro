@@ -56,6 +56,7 @@ const bookingsUrl = import.meta.env.PUBLIC_BOOKINGS_URL || '';
             <input type="hidden" name="_subject" value="New Archytum website inquiry" />
           </div>
           <button class="button teal" type="submit">Send inquiry</button>
+          <p class="help">By submitting, you agree to the <a href="/privacy/">Privacy Notice</a>. Receipt does not mean acceptance of an engagement.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           {!formEndpoint && <p class="help"><strong>Local preview:</strong> submission is disabled until the approved Formspree endpoint is configured.</p>}
         </form>
