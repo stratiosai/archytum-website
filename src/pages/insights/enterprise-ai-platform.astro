@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<BaseLayout title="What an Enterprise AI Platform Needs Beyond a Model | Archytum" description="The platform capabilities required to operate enterprise AI systems safely and reliably.">
+  <PageHero eyebrow="Enterprise AI" title="A model endpoint is not a platform." lede="What an enterprise AI platform actually needs beyond model access." />
+  <article class="content">
+    <p class="article-meta">Archytum • Architecture guide</p>
+    <p>A demonstration can succeed with a model, a prompt, and a small set of sample documents. Production must answer a longer list of questions: who may use the system, what data it may access, how quality is measured, what happens during failure, and who owns the operating cost.</p>
+    <h2>Identity before capability</h2>
+    <p>Users, workloads, tools, and data sources need explicit identities and least-privilege authorization. A conversational interface does not erase the need for tenant boundaries, role design, audit evidence, and privileged-access controls.</p>
+    <h2>Retrieval is a data system</h2>
+    <p>Useful retrieval requires source ownership, ingestion policy, classification, permissions, freshness, citation behavior, retention, and deletion. A vector index is one implementation detail inside that operating model.</p>
+    <h2>Evaluation must reflect the decision risk</h2>
+    <p>Generic quality scores are not enough. Evaluation should include representative tasks, factuality, source use, refusal behavior, privacy leakage, adversarial inputs, latency, cost, and the business consequence of an incorrect answer.</p>
+    <h2>Observability and rollback are features</h2>
+    <p>Teams need traces, versioned prompts and models, change ownership, release gates, cost telemetry, incident handling, and a safe way to disable or degrade capabilities. Without these, improvement becomes guesswork.</p>
+    <blockquote>Enterprise AI is the controlled system around the model: identity, data, evaluation, operations, and accountability.</blockquote>
+  </article>
+</BaseLayout>

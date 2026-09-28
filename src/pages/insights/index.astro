@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+const articles = [
+  { n: '01', href: '/insights/inbox-to-action-command-center/', title: 'From Inbox to Action: Designing a Human-Approved AI Command Center', text: 'A practical operating model for turning Microsoft 365 activity into priorities without granting invisible authority.' },
+  { n: '02', href: '/insights/enterprise-ai-platform/', title: 'What an Enterprise AI Platform Actually Needs Beyond a Model', text: 'Identity, data boundaries, retrieval, evaluation, observability, governance, and operational ownership.' },
+  { n: '03', href: '/insights/agents-with-control/', title: 'How to Introduce AI Agents Without Giving Up Operational Control', text: 'A staged permission model built around evidence, approval, failure handling, and rollback.' }
+];
+---
+
+<BaseLayout title="Insights | Archytum" description="Practical guidance on Azure architecture, enterprise AI systems, business automation, and human-controlled agents.">
+  <PageHero eyebrow="Insights" title="Useful technical judgment, without the theater." lede="Practical writing about Azure, AI systems, business workflows, evaluation, governance, and controlled delivery." />
+  <section class="section">
+    <div class="container article-list">
+      {articles.map((article) => (
+        <article class="card article-card">
+          <div class="article-index" aria-hidden="true">{article.n}</div>
+          <div>
+            <p class="article-meta">Archytum insight</p>
+            <h2>{article.title}</h2>
+            <p>{article.text}</p>
+            <a class="link" href={article.href}>Read the article →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

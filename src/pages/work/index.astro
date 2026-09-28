@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+---
+
+<BaseLayout title="Work & Case Studies | Archytum" description="Independent demonstrations, reference architectures, and evidence-backed Archytum case studies.">
+  <PageHero eyebrow="Work" title="Show the architecture. Label the evidence." lede="Archytum publishes independently created demonstrations and internal case studies with their status, controls, and limitations visible." />
+  <section class="section">
+    <div class="container grid-3">
+      <article class="card featured">
+        <span class="tag">Case study in progress</span>
+        <h2>Inbox-to-Action Command Center</h2>
+        <p>Read-only Microsoft 365 intake, daily action briefs, meeting preparation, and an approval queue for Archytum’s own operating workflow.</p>
+        <a class="link" href="/work/inbox-to-action/">View the case-study design →</a>
+      </article>
+      <article class="card">
+        <span class="tag">Planned demonstration</span>
+        <h2>Enterprise AI platform reference</h2>
+        <p>A publishable reference showing identity, retrieval, evaluation, observability, governance, and human approval boundaries.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Planned demonstration</span>
+        <h2>Azure workload foundation</h2>
+        <p>A right-sized landing and delivery pattern with environment separation, cost controls, rollback, and production-readiness gates.</p>
+      </article>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container grid-2">
+      <div class="section-heading"><p class="eyebrow">Publication rules</p><h2>No borrowed credibility.</h2></div>
+      <ul class="checklist">
+        <li>No employer or client work without written permission</li>
+        <li>No invented results, testimonials, or production claims</li>
+        <li>No secrets, account details, or private architecture</li>
+        <li>Demonstrations and measured case studies labeled distinctly</li>
+      </ul>
+    </div>
+  </section>
+  <CTA />
+</BaseLayout>

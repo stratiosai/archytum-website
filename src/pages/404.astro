@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout title="Page Not Found | Archytum" description="The requested page could not be found." noindex={true}>
+  <PageHero eyebrow="404" title="That page is not part of the architecture." lede="The address may have changed, or the page may never have existed." />
+  <section class="section"><div class="narrow"><a class="button" href="/">Return home</a> <a class="button secondary" href="/contact/">Contact Archytum</a></div></section>
+</BaseLayout>

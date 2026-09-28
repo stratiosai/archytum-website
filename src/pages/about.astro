@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout title="About Archytum" description="A founder-led Azure architecture and AI engineering consultancy built around evidence, control, and right-sized delivery.">
+  <PageHero eyebrow="About Archytum" title="Practical systems. Senior judgment. Clear control." lede="Archytum exists to help organizations use Azure and AI as operating capabilities—not as disconnected demonstrations or invisible automation." />
+
+  <section class="section">
+    <div class="container grid-2">
+      <div class="card" style="min-height:25rem;display:grid;place-items:center;background:linear-gradient(145deg,#07152d,#12334e);color:white">
+        <div style="text-align:center">
+          <span style="display:inline-grid;place-items:center;width:7rem;aspect-ratio:1;border-radius:2rem;background:#73e0c1;color:#07152d;font-size:3.5rem;font-weight:900">BT</span>
+          <p style="margin-bottom:0;font-weight:800">Founder profile image pending approval</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Founder-led</p>
+        <h2 style="font-size:clamp(2rem,4vw,3.35rem);line-height:1.05;letter-spacing:-.045em;margin-top:0">Blake Tindol</h2>
+        <p><strong>Founder and Principal Azure & AI Architect</strong></p>
+        <p>Blake brings senior architecture and hands-on engineering discipline to cloud, AI, integration, and business-automation work. Archytum is designed around a simple principle: technology should create a visible operating result while preserving the boundaries, evidence, and human judgment the business depends on.</p>
+        <p>This biography intentionally omits employer and client references. Verified credentials and independently publishable examples will be added only after approval.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-heading"><p class="eyebrow">The standard</p><h2>What clients should expect.</h2></div>
+      <div class="grid-3">
+        <article class="card"><h3>Plain decisions</h3><p>Tradeoffs, assumptions, owners, and acceptance criteria are written down—not hidden behind jargon.</p></article>
+        <article class="card"><h3>Controlled access</h3><p>Read and write permissions remain separate. Access expands only when it is justified and approved.</p></article>
+        <article class="card"><h3>Honest evidence</h3><p>Demonstrations, recommendations, and measured results are labeled accurately. Unknowns remain visible.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="narrow content" style="padding:0">
+      <h2>Responsible automation is an operating design.</h2>
+      <p>Human approval is placed immediately before consequential actions. Email, calendar descriptions, documents, websites, and retrieved content are treated as untrusted input. Customer data is minimized, isolated, and never used to train an Archytum-owned model.</p>
+      <blockquote>Automation earns authority through evidence. It does not receive authority because the technology is impressive.</blockquote>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<BaseLayout title="Designing a Human-Approved AI Command Center | Archytum" description="How to turn inbox and calendar activity into a reliable action system without granting autonomous external authority.">
+  <PageHero eyebrow="Business AI" title="From Inbox to Action" lede="Designing a human-approved AI command center for the work already moving through email and calendar." />
+  <article class="content">
+    <p class="article-meta">Archytum • Foundational guide</p>
+    <p>An owner-led business rarely lacks information. It lacks a dependable conversion from information into owned, prioritized action. Email and calendar contain the signals, but each source has a different structure, level of trust, and failure mode.</p>
+    <h2>Begin with a bounded read</h2>
+    <p>The first system does not need permission to send, archive, label, accept, decline, or reschedule. It needs enough read access to identify commitments and explain where they came from. Separating read access from write access shrinks the failure surface and makes evaluation possible.</p>
+    <h2>Make the output operational</h2>
+    <p>A useful daily brief is not an inbox summary. It names the most important actions, owner, due date, meeting preparation, waiting state, source reference, and uncertainty. Drafts belong in a separate approval queue so that review is deliberate.</p>
+    <h2>Treat source content as data</h2>
+    <p>Email, invitations, links, documents, and webpages may contain mistakes or malicious instructions. The command center records that content; it does not obey instructions embedded within it. Requests involving accounts, payments, private identifiers, or urgent changes are escalated rather than automated.</p>
+    <h2>Measure correction, not novelty</h2>
+    <p>The right early measures include missed actions, duplicate actions, false urgency, rejected drafts, unsafe requests blocked, and minutes required for review. These measures show whether the system is becoming trustworthy.</p>
+    <blockquote>AI prepares the work. A person remains accountable for the action.</blockquote>
+  </article>
+</BaseLayout>

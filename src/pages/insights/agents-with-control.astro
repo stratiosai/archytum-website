@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<BaseLayout title="Introduce AI Agents Without Giving Up Control | Archytum" description="A staged approach to agent permissions, approvals, validation, and rollback.">
+  <PageHero eyebrow="Controlled agents" title="Expand authority one proven step at a time." lede="How to introduce AI agents without giving up operational control." />
+  <article class="content">
+    <p class="article-meta">Archytum • Operating guide</p>
+    <p>The fastest way to lose trust in an agent is to give it broad authority before the organization understands its error patterns. A safer program expands through explicit stages.</p>
+    <h2>Stage 1: observe and structure</h2>
+    <p>Read bounded inputs, extract facts, classify work, and produce internal reports. Require source references and record missing data. This stage establishes whether the system can understand the environment.</p>
+    <h2>Stage 2: prepare</h2>
+    <p>Draft messages, proposed changes, and decision options without executing them. Track approval and correction rates. Rejected drafts are valuable evaluation evidence.</p>
+    <h2>Stage 3: approve exact actions</h2>
+    <p>Approval should bind to the exact identity, destination, content, side effect, and expiration time. Material changes after approval require a new approval. Execution must return direct evidence.</p>
+    <h2>Stage 4: automate only reversible, low-risk work</h2>
+    <p>Consider unattended execution only after the prior stages demonstrate reliability and the action has a clear owner, rollback, limit, and monitoring path. Some actions—payments, contracts, public claims, and sensitive account changes—should remain human decisions.</p>
+    <blockquote>Permission is an engineering surface. Treat it with the same rigor as code, data, and infrastructure.</blockquote>
+  </article>
+</BaseLayout>

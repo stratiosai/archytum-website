@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+---
+
+<BaseLayout title="Inbox-to-Action Case Study | Archytum" description="The design and validation plan for Archytum's human-approved Microsoft 365 command center.">
+  <PageHero eyebrow="Internal case study • In progress" title="Inbox-to-Action Command Center" lede="A read-only Microsoft 365 workflow that turns email and calendar activity into a prioritized daily brief, meeting preparation, and an approval queue." />
+  <article class="content">
+    <div class="notice"><strong>Status: architecture and website documentation only.</strong> Production operation and measured business results have not yet been claimed.</div>
+    <h2>The problem</h2>
+    <p>Inquiries, commitments, meetings, preparation, and follow-ups are distributed across an owner’s Outlook inbox, calendar, and memory. The system needs to surface the work without gaining silent authority to act.</p>
+    <h2>The bounded design</h2>
+    <ul>
+      <li>Delegated Microsoft Graph permissions: User.Read, Mail.Read, Calendars.Read, and offline_access.</li>
+      <li>No Mail.Send, Mail.ReadWrite, or Calendars.ReadWrite.</li>
+      <li>Weekday brief with priorities, meetings, deadlines, follow-ups, drafts, and data gaps.</li>
+      <li>Source references, deduplication, uncertainty, and run evidence.</li>
+      <li>Separate approval queue for every proposed external action.</li>
+    </ul>
+    <h2>Validation before scheduling</h2>
+    <ul>
+      <li>Prompt injection inside email and calendar content</li>
+      <li>Spoofed requests and payment-change language</li>
+      <li>Duplicates, cancellations, reschedules, and time-zone ambiguity</li>
+      <li>Private-data leakage into drafts</li>
+      <li>Expired approvals and partial API failures</li>
+    </ul>
+    <h2>Measures that will matter</h2>
+    <p>Critical-item capture, false urgency, missed commitments, duplicate actions, draft correction rate, unsafe requests blocked, founder review time, and verified time saved.</p>
+    <blockquote>The case study becomes evidence only after representative operation. Until then, this page describes the system and its acceptance standard.</blockquote>
+  </article>
+  <CTA primaryLabel="Discuss a Business AI workflow" primaryHref="/contact/?path=business" />
+</BaseLayout>
