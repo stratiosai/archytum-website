@@ -1,0 +1,64 @@
+<section class="section architecture-showcase" aria-labelledby="architecture-heading">
+  <div class="container">
+    <div class="architecture-intro">
+      <div class="section-heading">
+        <p class="eyebrow">Inside the architecture</p>
+        <h2 id="architecture-heading">Move from an idea to a platform—with the controls designed in.</h2>
+        <p>Private networking. Entra identity. Repeatable deployment. Archytum brings platform, application, networking, and security decisions into one delivery plan.</p>
+      </div>
+      <aside class="architecture-lab">
+        <span class="tag">Design → Prototype → Validate</span>
+        <h3>Build in a test tenant. Promote with evidence.</h3>
+        <p>Our own test tenant gives us a place to explore Azure solutions before a customer production rollout. Infrastructure as code and explicit acceptance tests are how we aim to shorten the path from design to a working system.</p>
+        <p class="help">The design below is illustrative—not a claim that this complete platform is deployed, benchmarked, or production-certified.</p>
+      </aside>
+    </div>
+    <figure class="architecture-figure">
+      <a href="/media/azure-private-ai-reference.png" aria-label="Open the full-size private Azure AI reference architecture diagram">
+        <img src="/media/azure-private-ai-reference.png" width="1672" height="941" loading="lazy" decoding="async" alt="Private Azure AI platform reference. Inbound HTTPS passes through Application Gateway and WAF to an App Service private endpoint and the application. Outbound calls use VNet integration, then either private service endpoints or a firewall-controlled external route. Entra identity and delivery controls span both paths." />
+      </a>
+      <figcaption>Reference design • AI-generated visual, reviewed for the logical flow • Open the image to enlarge. The lanes show request paths, not physical subnet boundaries.</figcaption>
+    </figure>
+    <div class="architecture-summary">
+      <p><strong>Public edge, private application.</strong> Inspect incoming HTTPS at the gateway. Keep application and data-service public access disabled; resolve private endpoints through private DNS.</p>
+      <p><strong>Identity is not a network shortcut.</strong> Authenticate users with Entra ID; authorize application actions explicitly. Use scoped workload identities, controlled egress, and reviewed deployment permissions.</p>
+      <a class="button secondary" href="/work/private-azure-ai-platform/">Explore the engineering decisions →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="examples-heading">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Three ways to put the architecture to work</p>
+      <h2 id="examples-heading">A workflow. An application. A platform.</h2>
+      <p>Different scopes—not one enterprise-sized solution forced onto every business.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <span class="tag">Business AI • Design in progress</span>
+        <h3>Inbox-to-Action</h3>
+        <p>Turn Outlook email and calendar activity into an action brief, meeting preparation, and reviewable drafts.</p>
+        <p><strong>Control:</strong> read-only intake; a person approves every external action.</p>
+        <p><strong>What to measure:</strong> missed commitments, draft corrections, and verified review time.</p>
+        <a class="link" href="/work/inbox-to-action/">See the workflow design →</a>
+      </article>
+      <article class="card">
+        <span class="tag">Custom solution • Illustrative</span>
+        <h3>Knowledge-to-Decision</h3>
+        <p>A proposed internal assistant that retrieves approved business documents and returns source-linked answers.</p>
+        <p><strong>Control:</strong> enforce document access in retrieval, test grounding, and require approval before writes.</p>
+        <p><strong>What to measure:</strong> answer quality, access leakage, latency, and cost per useful answer.</p>
+        <a class="link" href="/work/private-azure-ai-platform/#application">Explore the application pattern →</a>
+      </article>
+      <article class="card">
+        <span class="tag">Enterprise • Reference design</span>
+        <h3>Private Azure AI Platform</h3>
+        <p>A foundation for multiple governed workloads, with separate environments, private service access, and controlled delivery.</p>
+        <p><strong>Control:</strong> identity, network boundaries, infrastructure review, and recovery plans.</p>
+        <p><strong>What to measure:</strong> deployment repeatability, recovery, throughput, and operating cost.</p>
+        <a class="link" href="/contact/?path=enterprise">Discuss a platform initiative →</a>
+      </article>
+    </div>
+  </div>
+</section>

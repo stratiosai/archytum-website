@@ -1,10 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
+import ArchitectureShowcase from '../components/ArchitectureShowcase.astro';
 ---
 
 <BaseLayout>
   <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="/media/archytum-systems-poster.webp" alt="" width="640" height="360" fetchpriority="high" />
+      <video id="hero-video" muted playsinline loop preload="none" poster="/media/archytum-systems-poster.webp" data-src="/media/archytum-systems-hero.mp4" data-webm="/media/archytum-systems-hero.webm" tabindex="-1"></video>
+    </div>
     <div class="container">
       <p class="eyebrow">Azure Architecture • AI Engineering • Business Automation</p>
       <h1>Controlled Azure and AI systems—from focused automation to enterprise-scale platforms.</h1>
@@ -13,6 +18,7 @@ import CTA from '../components/CTA.astro';
         <a class="button teal" href="/contact/?path=enterprise">Discuss an Azure or AI initiative</a>
         <a class="button secondary" href="/business-ai/">Explore small-business AI packages</a>
       </div>
+      <button class="hero-motion" type="button" aria-controls="hero-video" hidden>Play background video</button>
     </div>
   </section>
 
@@ -23,6 +29,8 @@ import CTA from '../components/CTA.astro';
       <div class="trust-item">Human approval where consequences matter</div>
     </div>
   </div>
+
+  <ArchitectureShowcase />
 
   <section class="section">
     <div class="container">
@@ -105,3 +113,44 @@ import CTA from '../components/CTA.astro';
 
   <CTA />
 </BaseLayout>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>('#hero-video');
+  const button = document.querySelector<HTMLButtonElement>('.hero-motion');
+  if (video && button) {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    let wantsPlayback = !motion.matches && !connection?.saveData;
+    const update = () => {
+      button.textContent = video.paused ? 'Play background video' : 'Pause background video';
+    };
+    const play = async () => {
+      if (!video.src) video.src = video.canPlayType('video/webm; codecs="vp9"') ? video.dataset.webm! : video.dataset.src!;
+      video.muted = true;
+      try { await video.play(); } catch { /* Keep the poster and manual play control. */ }
+      update();
+    };
+    button.hidden = false;
+    video.addEventListener('play', update);
+    video.addEventListener('pause', update);
+    video.addEventListener('error', () => {
+      video.hidden = true;
+      button.hidden = true;
+    });
+    button.addEventListener('click', () => {
+      wantsPlayback = video.paused;
+      if (wantsPlayback) { video.hidden = false; void play(); }
+      else video.pause();
+    });
+    motion.addEventListener('change', () => {
+      wantsPlayback = false;
+      video.pause();
+      video.hidden = motion.matches;
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else if (wantsPlayback) void play();
+    });
+    if (wantsPlayback) void play();
+  }
+</script>

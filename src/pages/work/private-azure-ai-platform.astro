@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+---
+
+<BaseLayout title="Private Azure AI Platform Reference | Archytum" description="A reference Azure AI platform with private ingress and service access, Entra identity, controlled delivery, and explicit scale and recovery decisions.">
+  <PageHero eyebrow="Architecture briefing • Reference design" title="The platform is more than its diagram." lede="A concrete starting point for an Azure AI application—and the decisions that turn a starting point into an operable platform." />
+  <div class="container">
+    <figure class="architecture-figure">
+      <a href="/media/azure-private-ai-reference.png"><img src="/media/azure-private-ai-reference.png" width="1672" height="941" alt="Two logical paths: inbound HTTPS through WAF and an App Service private endpoint; outbound App Service VNet integration to private Azure service endpoints or firewall-controlled external APIs." /></a>
+      <figcaption>AI-generated reference visual. App Service appears twice to explain the same application's inbound and outbound paths. This is not a deployed-environment or physical subnet diagram.</figcaption>
+    </figure>
+  </div>
+  <article class="content">
+    <div class="notice"><strong>Design status, not a production claim.</strong> No capacity, availability, compliance, or delivery-time guarantee is implied. This reference still needs workload requirements, SKU/region checks, implementation, and recorded acceptance tests.</div>
+
+    <h2>The request path</h2>
+    <ol>
+      <li>HTTPS reaches Application Gateway with WAF; the gateway connects to the app through its private endpoint. Configure backend TLS, host headers, and health probes explicitly.</li>
+      <li>The application authenticates users through Microsoft Entra ID and enforces its own resource-level authorization.</li>
+      <li>App Service uses a separate VNet integration subnet for outbound calls. Private endpoints provide access to Key Vault, Azure OpenAI, AI Search, and Storage. Disable public network access separately; creating an endpoint alone does not do that.</li>
+      <li>Route approved external dependencies through Azure Firewall using explicit routing and egress policy. Test DNS and effective routes; VNet integration alone does not force every connection through the firewall.</li>
+    </ol>
+    <p>Inbound private endpoints and outbound integration are different mechanisms. See Microsoft's <a href="https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint">App Service private endpoint guidance</a> and <a href="https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration">VNet integration guidance</a>.</p>
+
+    <h2>Five principal-level engineering perspectives</h2>
+    <p>These are review disciplines, not claims of five separate staffed roles.</p>
+    <details class="engineering-detail" open>
+      <summary>01 / Solutions architecture — establish the constraints</summary>
+      <p>Agree on data classification, residency, user journeys, expected concurrency, recovery objectives, and a cost envelope before choosing services. Record tradeoffs in architecture decisions. Begin with a modular application; introduce separate services when ownership, scale, or isolation needs justify them.</p>
+    </details>
+    <details class="engineering-detail">
+      <summary>02 / Platform engineering — make delivery repeatable</summary>
+      <p>Separate production and nonproduction subscriptions and deployment identities. Define versioned infrastructure modules, policy checks, plan review, environment approvals, and rollback. Use federated CI credentials rather than stored client secrets. Private deployment endpoints need runners with approved network reachability; securing the application endpoint is not enough.</p>
+      <p>Management groups, budgets, diagnostics, and workload ownership belong in the foundation. Microsoft’s <a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas">landing zone design areas</a> provide the broader platform context that this workload diagram intentionally omits.</p>
+    </details>
+    <details class="engineering-detail">
+      <summary>03 / Network engineering — prove the paths</summary>
+      <p>Allocate nonoverlapping address space and distinct gateway, integration, endpoint, and firewall subnets. Account for App Service scaling headroom and service-specific subnet requirements. Link the correct private DNS zones; include deployment/SCM resolution and hybrid forwarding where needed. Verify TLS from gateway to app, private service resolution, denied direct public access, and outbound allowlists independently.</p>
+      <p>A hub-and-spoke platform can centralize connectivity and DNS. It is an extension to this simplified workload view, not something the image claims is already configured.</p>
+    </details>
+    <details class="engineering-detail" id="application">
+      <summary>04 / Software engineering — bound the AI behavior</summary>
+      <p>The Knowledge-to-Decision example retrieves only documents the caller may access. Keep access checks server-side, attach source references, evaluate unsupported answers, and treat retrieved text as untrusted input. Scope managed identities to the required data actions. Apply timeouts, bounded retries, idempotency for writes, and explicit approval before consequential tool calls.</p>
+      <p>Test normal, adversarial, and empty-result cases. A confident answer is not evidence; log enough to diagnose failures without storing sensitive prompts by default.</p>
+    </details>
+    <details class="engineering-detail">
+      <summary>05 / Security engineering — separate trust boundaries</summary>
+      <p>Use Conditional Access for human sign-in, scoped Azure RBAC for resource access, and separate application authorization for business data. Require time-bounded privileged administration where supported, test emergency access, and review permissions continuously. Private networking does not replace authentication, authorization, threat modeling, or incident response.</p>
+    </details>
+
+    <h2>Scale deliberately—not by adding every service</h2>
+    <p>Start with a load model: concurrent sessions, request rate, document volume, model token demand, and acceptable tail latency. Bound app autoscale, model quotas, search capacity, and connection pools together. Add queues and backpressure for asynchronous work when required; a scaled web tier cannot remove a downstream quota.</p>
+    <p>Use zone redundancy only on supported plans and regions. Multi-region deployment requires explicit data replication, failover, consistency, and recovery testing—it is not implied by this diagram. Agree on measurable <a href="https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics">reliability targets</a> before buying redundancy.</p>
+
+    <h2>The acceptance evidence</h2>
+    <ul>
+      <li>Fresh-environment deployment, reviewed infrastructure diff, and tested rollback.</li>
+      <li>Allowed and denied identity, public-access, DNS, and outbound-network tests.</li>
+      <li>Representative load results: latency, errors, quota behavior, and cost.</li>
+      <li>AI evaluation: source fidelity, unauthorized retrieval, prompt injection, and write approvals.</li>
+      <li>Restore or failover exercise with observed recovery time and data loss.</li>
+    </ul>
+    <p>Archytum's test tenant supports controlled exploration. Customer production delivery uses separately approved identities, data, subscriptions, and change windows. Test-tenant success does not automatically establish production readiness.</p>
+    <p class="help">This is Archytum's simplified reference, informed by Microsoft documentation—not a Microsoft-endorsed design. Specific implementation choices and service availability must be checked for each engagement.</p>
+  </article>
+  <CTA primaryLabel="Discuss your Azure platform" primaryHref="/contact/?path=enterprise" />
+</BaseLayout>
