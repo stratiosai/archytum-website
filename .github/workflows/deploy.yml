@@ -31,6 +31,7 @@ jobs:
         run: npm run build
         env:
           ARCHYTUM_DEPLOY_BASE: /archytum-website
+          PUBLIC_FORMSPREE_ENDPOINT: ${{ vars.PUBLIC_FORMSPREE_ENDPOINT }}
       - name: Prepare project-site links
         run: node scripts/prepare-pages-preview.mjs
         env:
